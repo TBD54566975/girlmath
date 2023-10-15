@@ -2,6 +2,8 @@
 name = "girlmath"
 version = "0.1.0"
 edition = "2021"
+description = "WIP currency conversion lib that we're hoping to make usable across many languages thru bindings."
+license-file = "LICENSE"
 readme = "README.md"
 repository = "https://github.com/tbd54566975/girlmath"
 
