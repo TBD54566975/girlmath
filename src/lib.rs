@@ -57,8 +57,7 @@ pub fn minor_to_major(currency_code: &str, amount: &str) -> Result<String, Strin
 
 #[cfg(test)]
 mod test {
-    use super::minor_to_major;
-    use super::major_to_minor;
+    use super::{major_to_minor, minor_to_major};
 
     #[test]
     fn dollar_less_than_one() {
