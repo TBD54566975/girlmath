@@ -2,7 +2,7 @@ use rust_decimal::{prelude::ToPrimitive, Decimal};
 use rusty_money::{iso, Money};
 
 /// Parse a string currency amount to an integer amount of minor currency units
-pub fn parse_currency_str(currency_code: &str, amount: &str) -> Result<i64, String> {
+pub fn parse_currency_str(currency_code: &str, amount: &str) -> Result<i32, String> {
     let currency =
         iso::find(currency_code).ok_or_else(|| "currency code not supported".to_string())?;
 
@@ -13,7 +13,7 @@ pub fn parse_currency_str(currency_code: &str, amount: &str) -> Result<i64, Stri
     let multiplier: Decimal = Decimal::from(10u32.pow(currency.exponent));
     let amount_subunits_decimal = multiplier * amount_money.amount();
     let amount_subunits = amount_subunits_decimal
-        .to_i64()
+        .to_i32()
         .ok_or_else(|| "amount could not be converted to subunits".to_string())?;
 
     return Ok(amount_subunits);
@@ -22,13 +22,13 @@ pub fn parse_currency_str(currency_code: &str, amount: &str) -> Result<i64, Stri
 /// Format a currency string given an integer amount of minor currency units
 /// The currenct string will contain the currency symbol and use decimal and thousand separators
 /// used in the region where the currency is used. E.g. Euro amounts will be formatted as "€20,75".
-pub fn format_currency_amount(currency_code: &str, amount_subunits: i64) -> Result<String, String> {
+pub fn format_currency_amount(currency_code: &str, amount_subunits: i32) -> Result<String, String> {
     let currency = match iso::find(currency_code) {
         Some(val) => val,
         None => return Err("currency code not supported".to_string()),
     };
 
-    let amount_money = Money::from_minor(amount_subunits, currency);
+    let amount_money = Money::from_minor(amount_subunits.into(), currency);
 
     return Ok(amount_money.to_string());
 }

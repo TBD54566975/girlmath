@@ -1,0 +1,31 @@
+{
+  "name": "girlmath",
+  "version": "0.3.1",
+  "description": "Currency conversion",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/@tbd54566975/girlmath.git"
+  },
+  "bugs": {
+    "url": "https://github.com/@tbd54566975/girlmath/issues"
+  },
+  "main": "pkg/girlmath_js.js",
+  "types": "pkg/girlmath_js.d.ts",
+  "files": [
+      "pkg/girlmath_js_bg.wasm.js",
+      "pkg/girlmath_js_bg.wasm.d.ts",
+      "pkg/girlmath_js.js",
+      "pkg/girlmath_js.d.ts"
+  ],
+  "devDependencies": {
+    "wasm-pack": "^0.10.2"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "build:release": "WASM_PACK_ARGS=--release ./scripts/build.sh",
+    "build": "WASM_PACK_ARGS=--dev ./scripts/build.sh",
+    "package": "npm run build && npm pack"
+  }
+}
