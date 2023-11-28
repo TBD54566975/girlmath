@@ -34,8 +34,9 @@ pub fn convert_integer(
         .convert(payin_amount_money)
         .map_err(|money_err| format!("Failed to convert money amount with error: {}", money_err))?;
 
-    payout_amount_money
-        .amount()
+    let payout_subunit_multiplier = Decimal::from(10u32.pow(exchange_rate.to.exponent));
+
+    (payout_amount_money.amount() * payout_subunit_multiplier)
         .to_i64()
         .ok_or("Could not convert payout amount to integer".to_string())
 }
@@ -49,8 +50,11 @@ pub fn convert_str(
     let exchange_rate =
         create_exchange_rate(payin_currency_code, payout_currency_code, exchange_rate)?;
 
-    let payin_amount_money = Money::from_str(payin_amount, exchange_rate.from)
-        .map_err(|money_err| format!("Failed to format money amount with error: {}", money_err))?;
+    let payin_amount_without_currency_symbol = payin_amount.replace(&exchange_rate.from.symbol, "");
+    let payin_amount_money =
+        Money::from_str(&payin_amount_without_currency_symbol, exchange_rate.from).map_err(
+            |money_err| format!("Failed to format money amount with error: {}", money_err),
+        )?;
 
     let payout_amount_money = exchange_rate
         .convert(payin_amount_money)
@@ -60,3 +64,20 @@ pub fn convert_str(
 }
 
 // TODO(diehuxx): Use generics to somehow combine convert_str and convert_integer into one function with smart typing
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_convert_integer() {
+        let result = convert_integer("USD", "EUR", 2000, 1.5);
+        assert_eq!(result, Ok(3000));
+    }
+
+    #[test]
+    fn test_convert_str() {
+        let result = convert_str("USD", "EUR", "$20.00", 1.5);
+        assert_eq!(result, Ok("€30,00".to_string()));
+    }
+}
