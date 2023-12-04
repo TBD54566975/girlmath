@@ -20,7 +20,7 @@ fn create_exchange_rate<'a>(
         .map_err(|money_err| format!("Failed to create exchange rate with error: {}", money_err))
 }
 
-pub fn convert_integer(
+pub fn convert_currency_as_int(
     payin_currency_code: &str,
     payout_currency_code: &str,
     payin_amount_subunits: i32,
@@ -41,7 +41,7 @@ pub fn convert_integer(
         .ok_or("Could not convert payout amount to integer".to_string())
 }
 
-pub fn convert_str(
+pub fn convert_currency_as_str(
     payin_currency_code: &str,
     payout_currency_code: &str,
     payin_amount: &str,
@@ -71,13 +71,13 @@ mod tests {
 
     #[test]
     fn test_convert_integer() {
-        let result = convert_integer("USD", "EUR", 2000, 1.5);
+        let result = convert_currency_as_int("USD", "EUR", 2000, 1.5);
         assert_eq!(result, Ok(3000));
     }
 
     #[test]
     fn test_convert_str() {
-        let result = convert_str("USD", "EUR", "$20.00", 1.5);
+        let result = convert_currency_as_str("USD", "EUR", "$20.00", 1.5);
         assert_eq!(result, Ok("€30,00".to_string()));
     }
 }

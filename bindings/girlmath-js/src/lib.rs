@@ -1,13 +1,11 @@
 // TODO: remove when `per-package-target` feature will be stable
 #![cfg(target_arch = "wasm32")]
 
-use girlmath::format::format_currency_amount;
 use wasm_bindgen::prelude::*;
 
-#[wasm_bindgen]
-pub fn format_currency_amount_wasm(currency_code: &str, amount_subunits: i32) -> Result<String, String> {
-    format_currency_amount(currency_code, amount_subunits)
-}
+pub mod format;
+pub mod subunits;
+pub mod exchange;
 
 /// Run some stuff when the Wasm module is instantiated.
 ///
