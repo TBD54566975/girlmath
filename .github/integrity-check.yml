@@ -1,0 +1,51 @@
+# This workflow runs a handful of integrity checks.
+
+# when:
+#   - a pull request is opened against main
+#   - commits are pushed to main
+
+# what:
+#   - builds and tests crate
+#   - builds and tests WASM bindings
+#     - 
+
+name: Continuous Integration Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # used to run action manually via the UI
+  workflow_dispatch:
+
+jobs:
+  cargo-test:
+    name: cargo test
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        rust: [stable, nightly]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+      - name: Test
+        run: cargo test --workspace
+  
+  cargo-format:
+    name: cargo fmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Rustfmt
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt
+      - name: Rustfmt Check
+        id: rustfmt-check
+        uses: actions-rust-lang/rustfmt@v1
