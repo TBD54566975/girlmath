@@ -18,15 +18,14 @@ pub fn start() {
 /// * `currency_code` - The ISO or cryptocurrency code as a string slice.
 ///
 /// # Returns
-/// A `Result<String, String>` which is Ok with the amount in minor units
-/// or an Err with an error message.
+/// The amount in minor units
 ///
 /// # Examples
-/// ```
-/// use girlmath::major_to_minor;
+/// ```js
+/// import girlmath from '@tbd54566975/girlmath'
 ///
-/// let cents = major_to_minor("10.50", "USD").unwrap();
-/// assert_eq!("1050", cents);
+/// const cents = girlmath.majorToMinor("10.50", "USD")
+/// console.assert("1050" === cents)
 /// ```
 #[wasm_bindgen(js_name = majorToMinor)]
 pub fn major_to_minor_wasm(amt: &str, currency_code: &str) -> Result<String, JsError> {
@@ -40,15 +39,14 @@ pub fn major_to_minor_wasm(amt: &str, currency_code: &str) -> Result<String, JsE
 /// * `currency_code` - The ISO or cryptocurrency code as a string slice.
 ///
 /// # Returns
-/// A `Result<String, String>` which is Ok with the amount in major units
-/// or an Err with an error message.
+/// The amount in major units
 ///
 /// # Examples
-/// ```
-/// use girlmath::minor_to_major;
+/// ```js
+/// import girlmath from '@tbd54566975/girlmath'
 ///
-/// let dollars = minor_to_major("1050", "USD").unwrap();
-/// assert_eq!("10.50", dollars);
+/// const dollars = girlmath.minorToMajor("1050", "USD")
+/// console.assert("10.50" === dollars)
 /// ```
 #[wasm_bindgen(js_name = minorToMajor)]
 pub fn minor_to_major_wasm(amt: &str, currency_code: &str) -> Result<String, JsError> {
@@ -64,15 +62,14 @@ pub fn minor_to_major_wasm(amt: &str, currency_code: &str) -> Result<String, JsE
 /// * `rate` - The exchange rate as a string slice.
 ///
 /// # Returns
-/// A `Result<String, String>` which is Ok with the converted amount
-/// or an Err with an error message.
+/// the converted amount
 ///
 /// # Examples
-/// ```
-/// use girlmath::convert;
+/// ```js
+/// import girlmath from '@tbd54566975/girlmath'
 ///
-/// let payout_amt = convert("3", "USD", "GHS", "12.10").unwrap();
-/// assert_eq!("36.30", payout_amt);
+/// const payoutAmt = girlmath.convert("3", "USD", "GHS", "12.10")
+/// console.assert("36.30" === payoutAmt);
 /// ```
 #[wasm_bindgen(js_name = convert)]
 pub fn convert_wasm(
@@ -92,14 +89,14 @@ pub fn convert_wasm(
 /// * `currency_code` - The currency code for which the rate is to be inverted.
 ///
 /// # Returns
-/// A `Result<String, String>` which is Ok with the inverted rate as a string
-/// or an Err with an error message.
+/// the inverted rate as a string
 ///
 /// # Examples
 /// ```js
+/// import girlmath from '@tbd54566975/girlmath'
 ///
-/// const invertedRate = invertRate("40370.46311", "BTC")
-/// console.assert("0.00002477058", invertedRate);
+/// const invertedRate = girlmath.invertRate("40370.46311", "BTC")
+/// console.assert("0.00002477058" === invertedRate);
 /// ```
 #[wasm_bindgen(js_name = invertRate)]
 pub fn invert_rate(rate: &str, currency_code: &str) -> Result<String, JsError> {
