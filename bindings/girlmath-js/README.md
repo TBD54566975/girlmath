@@ -1,9 +1,13 @@
 # Girlmath Javascript bindings
+
 ## Development
+
 ### Prerequisites
+
 This project uses `wasm-pack`. Install with `cargo install wasm-pack`.
 
 ### Commands
+
 | Command               | Description                                                   |
 |-----------------------|---------------------------------------------------------------|
 | npm run build         | Run development build script to create WASM and isomorphic JS |

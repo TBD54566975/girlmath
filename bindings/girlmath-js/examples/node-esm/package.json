@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@girlmath/girlmath-js": "file:girlmath-girlmath-js-0.1.0.tgz"
+  }
+}

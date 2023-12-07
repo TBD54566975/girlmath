@@ -1,5 +1,3 @@
-pub mod format;
-
 use std::str::FromStr;
 
 use rust_decimal::Decimal;
