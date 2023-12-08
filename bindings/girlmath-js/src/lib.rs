@@ -1,4 +1,4 @@
-use girlmath;
+
 use wasm_bindgen::{prelude::*, JsError};
 
 /// Run some stuff when the Wasm module is instantiated.
@@ -29,7 +29,7 @@ pub fn start() {
 /// ```
 #[wasm_bindgen(js_name = majorToMinor)]
 pub fn major_to_minor_wasm(amt: &str, currency_code: &str) -> Result<String, JsError> {
-    return girlmath::major_to_minor(amt, currency_code).map_err(|e| JsError::new(&e));
+    girlmath::major_to_minor(amt, currency_code).map_err(|e| JsError::new(&e))
 }
 
 /// Converts a minor currency unit (like cents) to a major currency unit (like dollars).
@@ -50,7 +50,7 @@ pub fn major_to_minor_wasm(amt: &str, currency_code: &str) -> Result<String, JsE
 /// ```
 #[wasm_bindgen(js_name = minorToMajor)]
 pub fn minor_to_major_wasm(amt: &str, currency_code: &str) -> Result<String, JsError> {
-    return girlmath::minor_to_major(amt, currency_code).map_err(|e| JsError::new(&e));
+    girlmath::minor_to_major(amt, currency_code).map_err(|e| JsError::new(&e))
 }
 
 /// Converts an amount from one currency to another using a given exchange rate.
@@ -78,8 +78,8 @@ pub fn convert_wasm(
     payout_currency: &str,
     rate: &str,
 ) -> Result<String, JsError> {
-    return girlmath::convert(payin_amt, _payin_currency, payout_currency, rate)
-        .map_err(|e| JsError::new(&e));
+    girlmath::convert(payin_amt, _payin_currency, payout_currency, rate)
+        .map_err(|e| JsError::new(&e))
 }
 
 /// Inverts an exchange rate.
@@ -100,5 +100,5 @@ pub fn convert_wasm(
 /// ```
 #[wasm_bindgen(js_name = invertRate)]
 pub fn invert_rate(rate: &str, currency_code: &str) -> Result<String, JsError> {
-    return girlmath::invert_rate(rate, currency_code).map_err(|e| JsError::new(&e));
+    girlmath::invert_rate(rate, currency_code).map_err(|e| JsError::new(&e))
 }

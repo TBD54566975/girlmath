@@ -32,7 +32,7 @@ pub fn major_to_minor(amt: &str, currency_code: &str) -> Result<String, String> 
 
     let minor_amt = (multiplier * amt_dec).trunc();
 
-    return Ok(minor_amt.to_string());
+    Ok(minor_amt.to_string())
 }
 
 /// Converts a minor currency unit (like cents) to a major currency unit (like dollars).
@@ -63,7 +63,7 @@ pub fn minor_to_major(amt: &str, currency_code: &str) -> Result<String, String> 
 
     let major_amt = (amt_dec / multiplier).trunc_with_scale(sig_digs);
 
-    return Ok(major_amt.to_string());
+    Ok(major_amt.to_string())
 }
 
 /// Converts an amount from one currency to another using a given exchange rate.
@@ -102,7 +102,7 @@ pub fn convert(
     let rate_dec = Decimal::from_str(rate).map_err(|_| "Invalid rate".to_string())?;
     let converted_amt = (payin_dec * rate_dec).trunc_with_scale(sig_digs);
 
-    return Ok(converted_amt.to_string());
+    Ok(converted_amt.to_string())
 }
 
 /// Inverts an exchange rate.
@@ -131,7 +131,7 @@ pub fn invert_rate(rate: &str, currency_code: &str) -> Result<String, String> {
     let rate_dec = Decimal::from_str(rate).map_err(|_| "Invalid rate".to_string())?;
     let inverted_rate = (Decimal::ONE / rate_dec).trunc_with_scale(sig_digs + 3);
 
-    return Ok(inverted_rate.to_string());
+    Ok(inverted_rate.to_string())
 }
 
 #[cfg(test)]
