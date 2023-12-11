@@ -5,9 +5,8 @@
 # This script is really a workaround for https://github.com/rustwasm/wasm-pack/issues/1074.
 #
 # Currently, the only reliable way to load WebAssembly in all the JS
-# environments we want to target (web-via-webpack, web-via-browserify, jest)
-# seems to be to pack the WASM into base64, and then unpack it and instantiate
-# it at runtime.
+# environments we want to target seems to be to pack the WASM into base64, 
+# and then unpack it and instantiate it at runtime.
 #
 # Hopefully one day, https://github.com/rustwasm/wasm-pack/issues/1074 will be
 # fixed and this will be unnecessary.
