@@ -36,6 +36,8 @@
     "node": ">= 18"
   },
   "scripts": {
+    "clean": "rimraf pkg target tests/compiled && find dist -type f ! -name 'index.js' -delete",
+    "generate-lib": "npm run clean && ./scripts/build.sh && node ./scripts/bundle.js",
     "test:node": "mocha",
     "test:browser": "rimraf tests/compiled && node tests/bundle-tests.js && web-test-runner"
   }
