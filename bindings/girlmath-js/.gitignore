@@ -1,7 +1,5 @@
 target
 pkg
 node_modules
-package-lock.json
 dist/*
 !dist/index.js
-scripts/node_modules
