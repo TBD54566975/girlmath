@@ -5,4 +5,7 @@ resolver = "2"
 [workspace.package]
 homepage = "https://github.com/tbd54566975/girlmath"
 repository = "https://github.com/tbd54566975/girlmath.git"
-license = "MIT"
+license-file = "LICENSE"
+authors = ["Diane Huxley", "Moe Jangda", "Phoebe Lew", "Rebecca Corcillo"]
+description = "WIP currency conversion lib that we're hoping to make usable across many languages thru bindings."
+readme = "README.md"
