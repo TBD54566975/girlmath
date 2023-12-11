@@ -15,5 +15,5 @@ clean_js:
 build_js:
 	cargo build
 	$(JS_BINDINGS_DIR)/scripts/build.sh
-	npm install --prefix $(JS_BINDINGS_DIR)/scripts
+	npm install --prefix $(JS_BINDINGS_DIR)
 	node $(JS_BINDINGS_DIR)/scripts/bundle.js
