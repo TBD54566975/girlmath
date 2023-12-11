@@ -21,7 +21,7 @@ WASM_BINDGEN_WEAKREF=1 wasm-pack build --target nodejs --scope girlmath --out-di
 echo "module.exports = \`$(base64 -i pkg/girlmath_js_bg.wasm)\`;" > pkg/girlmath_js_bg.wasm.js
 
 # In the JavaScript:
-#  1. Strip out the lines that load the WASM, and our new epilogue.
+#  1. Strip out the lines that load the WASM, add our new epilogue.
 #  2. Remove the imports of `TextDecoder` and `TextEncoder`. We rely on the global defaults.
 {
   sed -e '/Text..coder.*= require(.util.)/d' \
