@@ -1,12 +1,11 @@
-[package]
-name = "girlmath"
-version = "0.1.0"
-edition = "2021"
-description = "WIP currency conversion lib that we're hoping to make usable across many languages thru bindings."
-license-file = "LICENSE"
-readme = "README.md"
-repository = "https://github.com/tbd54566975/girlmath"
+[workspace]
+members = ["crates/girlmath", "./bindings/girlmath-js"]
+resolver = "2"
 
-[dependencies]
-rusty-money = { version = "0.4.0", features = ["iso", "crypto"] }
-rust_decimal = "1.32.0"
+[workspace.package]
+homepage = "https://github.com/tbd54566975/girlmath"
+repository = "https://github.com/tbd54566975/girlmath.git"
+license-file = "LICENSE"
+authors = ["Diane Huxley", "Moe Jangda", "Phoebe Lew", "Rebecca Corcillo"]
+description = "WIP currency conversion lib that we're hoping to make usable across many languages thru bindings."
+readme = "README.md"

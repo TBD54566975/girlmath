@@ -1,0 +1,6 @@
+target
+pkg
+node_modules
+dist/*
+!dist/index.js
+tests/compiled

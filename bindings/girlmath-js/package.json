@@ -1,6 +1,7 @@
 {
-  "name": "girlmath",
-  "version": "0.3.1",
+  "name": "@tbd54566975/girlmath",
+  "version": "0.1.0",
+  "type": "module",
   "description": "Currency conversion",
   "repository": {
     "type": "git",
@@ -9,28 +10,35 @@
   "bugs": {
     "url": "https://github.com/@tbd54566975/girlmath/issues"
   },
-  "main": "pkg/girlmath_js.js",
-  "types": "pkg/girlmath_js.d.ts",
+  "types": "./dist/girlmath_js.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/girlmath_js.d.ts"
+    }
+  },
   "files": [
-      "pkg/girlmath_js_bg.wasm.js",
-      "pkg/girlmath_js_bg.wasm.d.ts",
-      "pkg/girlmath_js.js",
-      "pkg/girlmath_js.d.ts"
+    "./dist/index.js",
+    "./dist/bundle.js",
+    "./dist/girlmath_js.d.ts"
   ],
   "devDependencies": {
     "@types/chai": "4.3.0",
     "@types/mocha": "9.1.0",
+    "@web/test-runner": "0.18.0",
+    "@web/test-runner-playwright": "0.11.0",
     "chai": "4.3.10",
+    "esbuild": "0.19.9",
     "mocha": "10.2.0",
-    "typescript": "5.2.2",
-    "wasm-pack": "^0.10.2"
+    "rimraf": "5.0.5"
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">= 18"
   },
   "scripts": {
-    "build:release": "WASM_PACK_ARGS=--release ./scripts/build.sh",
-    "build": "WASM_PACK_ARGS=--dev ./scripts/build.sh",
-    "test": "npm run build && tsc && mocha \"dist/esm/tests/**/*.spec.js\""
+    "clean": "rimraf pkg target tests/compiled && find dist -type f ! -name 'index.js' -delete",
+    "generate-lib": "npm run clean && ./scripts/build.sh && node ./scripts/bundle.js",
+    "test:node": "mocha",
+    "test:browser": "rimraf tests/compiled && node tests/bundle-tests.js && web-test-runner"
   }
 }
