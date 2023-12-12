@@ -1,10 +1,6 @@
-
 use wasm_bindgen::{prelude::*, JsError};
 
-/// Run some stuff when the Wasm module is instantiated.
-///
-/// Right now, it does the following:
-///
+/// Run some stuff when the Wasm module is instantiated. Right now, it does the following:
 /// * Redirect Rust panics to JavaScript console.
 #[wasm_bindgen(start)]
 pub fn start() {
@@ -14,8 +10,8 @@ pub fn start() {
 /// Converts a major currency unit (like dollars) to a minor currency unit (like cents).
 ///
 /// # Arguments
-/// * `amt` - A string slice that holds the amount in major currency units.
-/// * `currency_code` - The ISO or cryptocurrency code as a string slice.
+/// * `amt` - The amount in major currency units.
+/// * `currency_code` - The ISO or cryptocurrency code.
 ///
 /// # Returns
 /// The amount in minor units
@@ -35,8 +31,8 @@ pub fn major_to_minor_wasm(amt: &str, currency_code: &str) -> Result<String, JsE
 /// Converts a minor currency unit (like cents) to a major currency unit (like dollars).
 ///
 /// # Arguments
-/// * `amt` - A string slice that holds the amount in minor currency units.
-/// * `currency_code` - The ISO or cryptocurrency code as a string slice.
+/// * `amt` - The amount in minor currency units.
+/// * `currency_code` - The ISO or cryptocurrency code.
 ///
 /// # Returns
 /// The amount in major units
@@ -56,10 +52,10 @@ pub fn minor_to_major_wasm(amt: &str, currency_code: &str) -> Result<String, JsE
 /// Converts an amount from one currency to another using a given exchange rate.
 ///
 /// # Arguments
-/// * `payin_amt` - The amount in the pay-in currency as a string slice.
-/// * `payin_currency` - The pay-in currency code as a string slice (currently unused).
-/// * `payout_currency` - The pay-out currency code as a string slice.
-/// * `rate` - The exchange rate as a string slice.
+/// * `payin_amt` - The payin amount expressed in major units.
+/// * `payin_currency` - The payin currency code (currently unused).
+/// * `payout_currency` - The payout currency code expressed in major units.
+/// * `rate` - The exchange rate.
 ///
 /// # Returns
 /// the converted amount
@@ -85,7 +81,7 @@ pub fn convert_wasm(
 /// Inverts an exchange rate.
 ///
 /// # Arguments
-/// * `rate` - The exchange rate as a string slice.
+/// * `rate` - The exchange rate.
 /// * `currency_code` - The currency code for which the rate is to be inverted.
 ///
 /// # Returns
