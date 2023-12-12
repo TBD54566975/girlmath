@@ -1,0 +1,3 @@
+# runs tests and doctests
+test-doc:
+    cargo test --doc --package girlmath

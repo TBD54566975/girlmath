@@ -9,6 +9,7 @@ Currency conversion lib that we're hoping to make usable across many languages t
 - [Development](#development)
   - [Prerequisites](#prerequisites)
     - [rust](#rust-1)
+    - [`just`](#just)
     - [Bindings](#bindings)
       - [JS](#js-1)
         - [`wasm`](#wasm)
@@ -54,6 +55,9 @@ const btc = girlmath.convert('10', 'USD', 'BTC', '0.000023')
 
 ### rust
 Instructions on how to install and configure rust can be found [here](https://www.rust-lang.org/tools/install)
+
+### `just`
+This project uses [`just`](https://github.com/casey/just) as a command runner. Installation instructions can be found [here](https://just.systems/man/en/chapter_4.html)
 
 ### Bindings
 
